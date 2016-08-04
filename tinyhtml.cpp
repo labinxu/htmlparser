@@ -47,12 +47,11 @@ void TagBuilder::pushTagsInfo(const TinyResult &tr)
     
     auto tn = std::get<0>(tr);
     auto pos = std::get<1>(tr)-tn.size()-1;
-    cout<<"push tag "<<tn<<endl;
+    
     _tmpTagsName.push_back(std::make_tuple(tn, pos));
 }
 void TagBuilder::popTagsInfo()
 {
-    cout<<"pop tag "<<std::get<0>(_tmpTagsName.back())<<endl;
     _tmpTagsName.pop_back();
 }
             
@@ -64,7 +63,7 @@ void TagBuilder::setData(const std::string &data)
 std::map<std::string, std::string>
 TagBuilder::extractAttrs(const std::string &attrsText){
 
-    //cout<<"extractAttrs: "<<attrsText<<endl;
+    
     std::map<std::string, std::string> attrs;
     const size_t size = attrsText.size();
     size_t pos = 0;
@@ -101,15 +100,11 @@ int TagBuilder::extractTag(const std::string &data,
                             std::shared_ptr<TinyTag> &tinyTag)
 {
     
-    cout<<"extractTag: "<<tinyTag->getName()<<" POS is: "<<pos<<endl;
-    cout<<"data: "<<data<<endl;
     pushTagsInfo(std::make_tuple(tinyTag->getName(),
                  pos-1-tinyTag->getName().size()));
                  
     auto attr_content = extractTagAttrsText(data);
-    cout<<"Tag "<<tinyTag->getName()<<
-      " AttrText: "<< std::get<0>(attr_content)<<"attr pos: "<<
-      std::get<1>(attr_content) <<endl;
+     
     auto attrs = extractAttrs(std::get<0>(attr_content));
     tinyTag->setAttrs(attrs);
     // content string
@@ -186,7 +181,7 @@ TinyResult TagBuilder::endTag(const std::string &data)
                     }
                     else
                     {
-                        cout<<"data: "<< data.substr(j)<<endl;
+                         
                         while(!_tmpTagsName.empty())
                         {
 
@@ -640,7 +635,7 @@ TinyTagPtr HTML::getRootTag() const
 void HTML::showTags()
 {
     auto tags = TagBuilder::Instance().getTags();
-    cout<<"showTags size tags: "<<tags.size();
+     
     for(auto it: tags)
     {
         cout<<it->getName()<<endl;
