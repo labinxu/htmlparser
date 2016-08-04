@@ -1,0 +1,11 @@
+cmake_minimum_required(VERSION 3.2.3)
+set(CMAKE_VERBOSE_MAKEFILE on)
+file(GLOB_RECURSE tinyhtml_source_files "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp")
+aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR} sources)
+
+include_directories("../jsoncpp")
+set(CMAKE_CXX_FLAGS "-g -Wall -std=c++11")
+set(EXECUTABLE_OUTPUT_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../build/out")
+set(LIBRARY_OUTPUT_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../build/out/lib")
+#add_library(tinyhtml STATIC ${tinyhtml_source_files})
+add_executable(tinyhtml ${sources})

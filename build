@@ -1,0 +1,2 @@
+clang++ -Wall -O -g -std=c++11 -c tinyhtml.cpp -o tinyhtml.o
+makefile:7: recipe for target 'tinyhtml.o' failed

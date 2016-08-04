@@ -1,0 +1,4 @@
+[{"tag": "div","findType":0, "attrs":["id","phrsListTab","class","trans-wrapper clearfix"],
+ "next":{"tag": "li", "findType":1,"attrs":[]}
+ }
+]
